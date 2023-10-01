@@ -4,8 +4,8 @@
  
       <!-- specific list view -->
       <record model="ir.ui.view" id="vehicle_view_tree">
-        <field name="name">fleetflow.vehicle.tree</field>
-        <field name="model">fleetflow.vehicle</field>
+        <field name="name">fleet.vehicle.tree</field>
+        <field name="model">fleet.vehicle</field>
         <field name="priority" eval="16"/>
         <field name="arch" type="xml">
           <tree>
@@ -17,7 +17,7 @@
     <!-- action view -->
     <record model="ir.actions.act_window" id="vehicle_list_action">
       <field name="name">Vehicles</field>
-      <field name="res_model">fleetflow.vehicle</field>
+      <field name="res_model">fleet.vehicle</field>
       <field name="view_mode">tree,form</field>
     </record>
 
