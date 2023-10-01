@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
- 
       <!-- specific list view -->
       <record model="ir.ui.view" id="vehicle_view_tree">
         <field name="name">fleet.vehicle.tree</field>
