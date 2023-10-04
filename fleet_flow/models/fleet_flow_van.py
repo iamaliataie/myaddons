@@ -106,7 +106,8 @@ class FleetFlowVan(models.Model):
             for quant in rec.quant_ids:
                 if quant.quantity > 0:
                     raise UserError("You have to return all products to source location")
-            quant.unlink()
+            for quant in rec.quant_ids:
+                quant.unlink()
 
             rec.state = "idle"
 
