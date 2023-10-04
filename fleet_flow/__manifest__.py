@@ -22,13 +22,8 @@
     "data": [
         "security/ir.model.access.csv",
         "views/fleetflow_van.xml",
+        "wizards/transfer_view.xml",
     ],
-    "qweb": ["views/pos_location_filter.xml"],
-    "assets": {
-        "web.assets_backend": [
-            "static/src/js/pos_location_filter.js",  # Path to your JavaScript file
-        ],
-    },
     # only loaded in demonstration mode
     "demo": [],
 }

@@ -1,5 +1,5 @@
 from odoo import models, api, fields, Command
-
+from odoo.exceptions import UserError
 
 class FleetFlowVan(models.Model):
     _name = "fleetflow.van"
@@ -104,35 +104,40 @@ class FleetFlowVan(models.Model):
     def action_empty(self):
         for rec in self:
             for quant in rec.quant_ids:
-                quant.unlink()
+                if quant.quantity > 0:
+                    raise UserError("You have to return all products to source location")
+            quant.unlink()
 
             rec.state = "idle"
 
     def action_unload(self):
         for rec in self:
             quant_ids = rec.location_id.quant_ids
-            stock_picking = self.env["stock.picking"].create(
-                {
-                    "location_id": rec.location_id.id,
-                    "location_dest_id": rec.source_location_id.id,
-                    "picking_type_id": rec.return_operation_type_id.id,
-                    "move_type": "direct",
-                }
-            )
+            # stock_picking = self.env["stock.picking"].create(
+            #     {
+            #         "location_id": rec.location_id.id,
+            #         "location_dest_id": rec.source_location_id.id,
+            #         "picking_type_id": rec.return_operation_type_id.id,
+            #         "move_type": "direct",
+            #     }
+            # )
 
-            for quant in quant_ids:
-                self.env["stock.move"].create(
-                    {
-                        "name": quant.product_id.name,
-                        "product_id": quant.product_id.id,
-                        "product_uom_qty": quant.quantity,
-                        "quantity_done": quant.quantity,
-                        "product_uom": quant.product_id.uom_id.id,
-                        "picking_id": stock_picking.id,
-                        "location_id": quant.location_id.id,
-                        "location_dest_id": rec.source_location_id.id,
-                    }
-                )
+            # for quant in quant_ids:
+            #     self.env["stock.move"].create(
+            #         {
+            #             "name": quant.product_id.name,
+            #             "product_id": quant.product_id.id,
+            #             # "product_uom_qty": quant.quantity,
+            #             # "quantity_done": quant.quantity,
+            #             "product_uom": quant.product_id.uom_id.id,
+            #             "picking_id": stock_picking.id,
+            #             "location_id": quant.location_id.id,
+            #             "location_dest_id": rec.source_location_id.id,
+            #         }
+            #     )
+
+            # stock_picking.action_confirm()
+            # stock_picking.action_assign()
 
             # return {
             #     "name": "Return Products",
@@ -141,10 +146,33 @@ class FleetFlowVan(models.Model):
             #     "type": "ir.actions.act_window",
             #     "view_mode": "form",
             # }
-            stock_picking.action_confirm()
-            stock_picking.action_assign()
-            stock_picking.button_validate()
-            rec.state = "returned"
+            # stock_picking.action_confirm()
+            # stock_picking.button_validate()
+            # rec.state = "returned"
+
+            product_ids = []
+
+            for quant in quant_ids:
+                if quant.quantity > 0:
+                    product_rec = self.env["product.quantity.transient"].create(
+                        {"product_id": quant.product_id.id, "quantity": quant.quantity}
+                    )
+                    product_ids.append(product_rec.id)
+            return {
+                "name": "Select Transfer Quantities",
+                "res_model": "transfer",
+                "type": "ir.actions.act_window",
+                "target": "new",
+                "view_mode": "form",
+                "context": {
+                    # "tree_view_ref":
+                    "default_product_ids": product_ids,
+                    "default_dest_location_id": rec.source_location_id.id,
+                    "default_source_location_id": rec.location_id.id,
+                    "picking_type_id": rec.return_operation_type_id.id,
+                    "van_id": rec.id,
+                },
+            }
 
 
 class ResCompany(models.Model):
