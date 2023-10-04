@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-extend="PosProductList">
+        <t t-jquery="button.js_location_filter" t-operation="append">
+            <button class="btn btn-primary btn-sm js_location_filter">Filter by Location</button>
+        </t>
+        <t t-jquery=".js_location_filter" t-operation="attributes">
+            <attribute name="data-action">filter_by_location</attribute>
+        </t>
+    </t>
+</templates>

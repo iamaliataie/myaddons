@@ -1,3 +1,1 @@
-# -*- coding: utf-8 -*-
-
-from . import vehicle, model
+from . import fleet_flow_van, product_product, stock_location, stock_picking

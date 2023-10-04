@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="fleetflow_load_view_form" model="ir.ui.view">
+        <field name="name">fleetflow.load.view.form</field>
+        <field name="model">fleetflow.load</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <group>
+                        <field name="vehicle_id" />
+
+                    </group>
+                    <notebook>
+                        <page name="products" string="Products">
+                            <field name="product_ids" >
+                                <tree editable="bottom">
+                                    <field name="product_id" />
+                                    <field name="quantity" />
+                                    <field name="load_id" />
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="fleetflow_load_action" model="ir.actions.act_window">
+        <field name="name">Fleetflow load</field>
+        <field name="res_model">fleetflow.load</field>
+        <field name="view_mode">tree,form</field>
+
+    </record>
+
+</odoo>

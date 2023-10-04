@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <!-- specific list view -->
+  <record model="ir.ui.view" id="vehicle_view_tree">
+    <field name="name">fleetflow.van.tree</field>
+    <field name="model">fleetflow.van</field>
+    <field name="priority" eval="16"/>
+    <field name="arch" type="xml">
+      <tree>
+        <field name="model" />
+        <field name="location_id" />
+        <field name="driver_id" />
+        <field name="state" />
+      </tree>
+    </field>
+  </record>
+
+
+  <record id="fleetflow_van_view_kanban" model="ir.ui.view">
+    <field name="name">fleetflow.van.view.kanban</field>
+    <field name="model">fleetflow.van</field>
+    <field name="arch" type="xml">
+      <kanban>
+
+        <templates>
+
+          <t t-name="kanban-box">
+            <div class="oe_kanban_global_click mb16 p-4 rounded-3">
+              <div class="text-center">
+                <field name="image" widget='image' />
+              </div>
+              <div class="mt-4 text-center">
+                <h2>
+                  <field name="model" />
+                </h2>
+              </div>
+              <div>
+                <strong> Driver:</strong>
+                <field name="driver_id" />
+              </div>
+              <div>
+                <strong> Location:</strong>
+                <field name="location_id" />
+              </div>
+            </div>
+          </t>
+        </templates>
+      </kanban>
+    </field>
+  </record>
+
+  <record model="ir.actions.act_window" id="location_open_quants">
+    <field name="domain">[('location_id', 'parent_of', active_ids)]</field>
+    <field name="name">Current Stock</field>
+    <field name="res_model">stock.quant</field>
+    <field name="view_mode">tree</field>
+  </record>
+
+  <record id="fleetflow_van_view_form" model="ir.ui.view">
+    <field name="name">fleetflow.van.view.form</field>
+    <field name="model">fleetflow.van</field>
+    <field name="arch" type="xml">
+      <form string="Vehicle" js_class="fleet_form" class="o_fleet_form">
+        <header>
+          <button name="action_unload" attrs="{'invisible':[('state','!=','loaded')]}" type="object">
+            Unload products
+          </button>
+          <button name="action_empty" attrs="{'invisible':[('state','!=','returned')]}" type="object">
+            Empty Van
+          </button>
+          <field name="state" widget="statusbar" options="{'clickable': '1'}"/>
+        </header>
+        <sheet>
+          <div class="oe_button_box" name="button_box">
+            <button string="Current Stock" class="oe_stat_button" icon="fa-cubes" name="open_stock" type="object" />
+            <button string="Load products" class="oe_stat_button" icon="fa-th" name="open_transfer" type="object" />
+          </div>
+          <field name="image" widget='image' class="oe_right"/>
+          <div class="oe_title">
+            <label for="model"/>
+            <h1>
+              <field name="model" placeholder="e.g. Transit"/>
+            </h1>
+            <label for="license_plate"/>
+            <h2>
+              <field name="license_plate" class="oe_inline" placeholder="e.g. AFG 326"/>
+            </h2>
+          </div>
+          <group col="2">
+            <group string="Driver">
+              <field name="source_location_id" string="Loading from location"/>
+              <field name="location_id"/>
+              <field name="driver_id"/>
+              <field name="color"/>
+              <field name="chassis_number"/>
+            </group>
+            <group string="Vehicle">
+              <field name="fuel_type" />
+              <field name="model_year" />
+              <field name="transmission" />
+            </group>
+          </group>
+          <notebook>
+            <page name="location_id" string="Current Products">
+              <field name="quant_ids">
+                <tree editable="bottom">
+                  <field name="product_id" />
+                  <field name="quantity" />
+                </tree>
+              </field>
+            </page>
+          </notebook>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <!-- action view -->
+  <record model="ir.actions.act_window" id="fleetflow_van_action">
+    <field name="name">Vans</field>
+    <field name="res_model">fleetflow.van</field>
+    <field name="view_mode">tree,form,kanban</field>
+  </record>
+
+  <menuitem name="FleetFlow" id="fleetflow_menu_root" web_icon="fleet_flow,static/description/icon.png">
+    <menuitem id="fleetflow_menu_1" name="Vans" sequence="1">
+      <menuitem id="fleetflow_van_menu" name="Vans" action="fleetflow_van_action" sequence="10"/>
+    </menuitem>
+  </menuitem>
+
+</odoo>
