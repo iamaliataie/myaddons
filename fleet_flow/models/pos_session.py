@@ -18,3 +18,8 @@ class PosSession(models.Model):
             print(quant.product_id.name, quant.quantity)
         loaded_data = super().load_pos_data()
         return loaded_data
+
+    def get_product_quantity(self, product_id, order_lines):
+        quants = self.config_id.van_id.quant_ids
+
+        return {"quantity": 0}

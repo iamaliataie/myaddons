@@ -27,4 +27,16 @@
     ],
     # only loaded in demonstration mode
     "demo": [],
+    "assets": {
+        "web.assets_backend": [
+            "fleet_flow/static/src/components/*/*.js",
+            "fleet_flow/static/src/components/*/*.xml",
+            "fleet_flow/static/src/components/*/*.scss",
+        ],
+        "point_of_sale.assets": [
+            "fleet_flow/static/src/pos/**/*.js",
+            "fleet_flow/static/src/pos/**/*.xml",
+            "fleet_flow/static/src/pos/**/*.scss",
+        ],
+    },
 }

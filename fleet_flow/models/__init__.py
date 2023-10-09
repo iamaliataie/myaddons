@@ -5,4 +5,5 @@ from . import (
     stock_picking,
     pos_config,
     pos_session,
+    pos_order,
 )
