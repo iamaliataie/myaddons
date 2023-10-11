@@ -17,7 +17,7 @@
     "application": True,
     "sequence": -1001,
     # any module necessary for this one to work correctly
-    "depends": ["base", "stock", "point_of_sale"],
+    "depends": ["base", "stock", "point_of_sale",],
     # always loaded
     "data": [
         "security/ir.model.access.csv",

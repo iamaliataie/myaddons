@@ -2,10 +2,28 @@
 
 import Registries from 'point_of_sale.Registries';
 import ProductScreen from 'point_of_sale.ProductScreen';
-import { Orderline } from 'point_of_sale.models';
+const { onMounted } = owl;
 
 const ProductScreenInherit = (product_screen) =>
   class extends product_screen {
+    setup() {
+      onMounted(() => {
+        this._computeQuanities();
+      });
+      return super.setup();
+    }
+
+    _computeQuanities() {
+      const orderlines = this.currentOrder.orderlines;
+      if (orderlines && orderlines.length) {
+        orderlines.forEach((line) => {
+          this.env.pos.db.product_by_id[
+            line.product?.id
+          ].quantity_in_location -= line.quantity;
+        });
+      }
+    }
+
     async _clickProduct(event) {
       let productHasOrderline = false;
       this.currentOrder.orderlines.forEach((line) => {

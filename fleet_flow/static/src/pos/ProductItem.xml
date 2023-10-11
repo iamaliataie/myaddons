@@ -3,7 +3,11 @@
 
     <t t-inherit="point_of_sale.ProductItem" t-inherit-mode="extension" owl="1">
         <xpath expr="//span[hasclass('price-tag')]" position="after">
-            <span class="price-tag">
+
+            <span t-if="props.product.quantity_in_location == 0" class="price-tag product-price-red">
+                Out Of Stock
+            </span>
+            <span t-if="props.product.quantity_in_location > 0" class="price-tag product-price-green">
                 <t t-esc="props.product.quantity_in_location" />
             </span>
         </xpath>
