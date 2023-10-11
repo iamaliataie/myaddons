@@ -19,8 +19,6 @@ class PosSession(models.Model):
         return products
 
     def load_pos_data(self):
-        for quant in self.config_id.van_id.location_id.quant_ids:
-            print(quant.product_id.name, quant.quantity)
         loaded_data = super().load_pos_data()
         return loaded_data
 
