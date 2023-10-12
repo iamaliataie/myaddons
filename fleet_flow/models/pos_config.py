@@ -4,7 +4,7 @@ from odoo import fields, api, models
 class PosConfig(models.Model):
     _inherit = "pos.config"
 
-    van_id = fields.Many2one("fleetflow.van")
+    # van_id = fields.Many2one("fleetflow.van")
 
     # def get_limited_products_loading(self, fields):
     #     query = """

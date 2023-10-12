@@ -8,8 +8,7 @@
         <field name="arch" type="xml">
             <xpath expr="//div[@id='other_devices']" position="after">
                 <div class="col-12 col-lg-6 o_setting_box" id="pos_location">
-                    <label for='van_id' />
-                    <field name="van_id"/>
+                    
                 </div>
             </xpath>
         </field>

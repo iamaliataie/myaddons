@@ -5,7 +5,7 @@ class PosSession(models.Model):
     _inherit = "pos.session"
 
     def _get_pos_ui_product_product(self, params):
-        location = self.config_id.van_id.location_id
+        location = self.config_id.picking_type_id.default_location_src_id
         products = self.env["product.product"].search_read(
             [("id", "in", [quant.product_id.id for quant in location.quant_ids])]
         )
