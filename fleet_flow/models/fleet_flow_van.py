@@ -174,6 +174,10 @@ class FleetFlowVan(models.Model):
                     "van_id": rec.id,
                 },
             }
+        
+    
+    def action_load_products(self):
+        pass
 
 
 class ResCompany(models.Model):

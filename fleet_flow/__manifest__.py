@@ -24,6 +24,7 @@
         "views/fleetflow_van.xml",
         "wizards/transfer_view.xml",
         "views/pos_config_view.xml",
+        # "static/src/xml/fleet_flow_van.xml",
     ],
     # only loaded in demonstration mode
     "demo": [],
@@ -32,6 +33,8 @@
             "fleet_flow/static/src/components/*/*.js",
             "fleet_flow/static/src/components/*/*.xml",
             "fleet_flow/static/src/components/*/*.scss",
+            "fleet_flow/static/src/js/van_kanban_extend.js",
+            "fleet_flow/static/src/xml/van_kanban_button.xml",
         ],
         "point_of_sale.assets": [
             "fleet_flow/static/src/pos/**/*.js",

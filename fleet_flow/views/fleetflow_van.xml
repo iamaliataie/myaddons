@@ -8,6 +8,9 @@
     <field name="priority" eval="16"/>
     <field name="arch" type="xml">
       <tree>
+        <header>
+          <button string="Alaki" name="action_load_products" type="object" class="oe_highlight"/>
+        </header>
         <field name="model" />
         <field name="location_id" />
         <field name="driver_id" />
@@ -21,7 +24,7 @@
     <field name="name">fleetflow.van.view.kanban</field>
     <field name="model">fleetflow.van</field>
     <field name="arch" type="xml">
-      <kanban default_group_by="state" records_draggable='false'>
+      <kanban default_group_by="state" records_draggable='false' js_class="button_in_kanban">
 
         <templates>
 
