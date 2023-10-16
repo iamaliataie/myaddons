@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="van_operation_unload_view_form" model="ir.ui.view">
+        <field name="name">van.operation.unload.form</field>
+        <field name="model">van.operation.unload</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <group >
+                        <field name="van_id" />
+                        <field name="dest_location_id" />
+                    </group>
+
+                    <field name="product_ids">
+                        <tree editable='bottom' create='0' delete="0">
+                            <field name="product_id" />
+                            <field name="image" widget="image" class="oe_avatar"/>
+                            <field name="quantity" string="Quantity In Van" />
+                            <field name="quantity_transfer" />
+
+                        </tree>
+                    </field>
+                </sheet>
+                <footer>
+                    <button string="Transfer" class="btn btn-primary" type="object" name="action_transfer" data-hotkey="q" />
+                    <button string="Cancel" class="btn-secondary" special="cancel" data-hotkey="z" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="van_operation_load_view_form" model="ir.ui.view">
+        <field name="name">van.operation.load.form</field>
+        <field name="model">van.operation.load</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <group >
+                        <field name="source_location_id" />
+                        <field name="van_id" />
+                    </group>
+
+                    <field name="product_ids">
+                        <tree editable='bottom' create='0' delete="0">
+                            <field name="product_id" />
+                            <field name="image" widget="image" class="oe_avatar"/>
+                            <field name="quantity" string="Quantity In Stock" />
+                            <field name="quantity_transfer" string="Quantity To Transfer" />
+
+                        </tree>
+                    </field>
+                </sheet>
+                <footer>
+                    <button string="Transfer" class="btn btn-primary" type="object" name="action_transfer" data-hotkey="q" />
+                    <button string="Cancel" class="btn-secondary" special="cancel" data-hotkey="z" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+</odoo>

@@ -8,9 +8,6 @@
     <field name="priority" eval="16"/>
     <field name="arch" type="xml">
       <tree>
-        <header>
-          <button string="Alaki" name="action_load_products" type="object" class="oe_highlight"/>
-        </header>
         <field name="model" />
         <field name="location_id" />
         <field name="driver_id" />
@@ -25,7 +22,6 @@
     <field name="model">fleetflow.van</field>
     <field name="arch" type="xml">
       <kanban default_group_by="state" records_draggable='false' js_class="button_in_kanban">
-
         <templates>
 
           <t t-name="kanban-box">
@@ -81,13 +77,13 @@
           </div>
           <group>
 
-                <h1>
-                  <field name="model" placeholder="e.g. Transit"/>
-                </h1>
-                <label for="license_plate"/>
-                <h2>
-                  <field name="license_plate" class="oe_inline" placeholder="e.g. AFG 326"/>
-                </h2>
+            <h1>
+              <field name="model" placeholder="e.g. Transit"/>
+            </h1>
+            <label for="license_plate"/>
+            <h2>
+              <field name="license_plate" class="oe_inline" placeholder="e.g. AFG 326"/>
+            </h2>
 
             <group>
               <field name="image" widget='image' class="oe_right"/>

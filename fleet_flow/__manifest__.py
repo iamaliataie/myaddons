@@ -17,12 +17,17 @@
     "application": True,
     "sequence": -1001,
     # any module necessary for this one to work correctly
-    "depends": ["base", "stock", "point_of_sale",],
+    "depends": [
+        "base",
+        "stock",
+        "point_of_sale",
+    ],
     # always loaded
     "data": [
         "security/ir.model.access.csv",
         "views/fleetflow_van.xml",
         "wizards/transfer_view.xml",
+        "wizards/van_operation_view.xml",
         "views/pos_config_view.xml",
         # "static/src/xml/fleet_flow_van.xml",
     ],

@@ -13,7 +13,9 @@ class StockPicking(models.Model):
 
     def button_validate(self):
         van_id = self.env.context.get("van_id", None)
+        state = self.env.context.get("state", None)
         if van_id:
             van = self.env["fleetflow.van"].browse(van_id)
-            van.state = "returned"
+
+            van.state = "returned" if state == "unload" else "loaded"
         return super().button_validate()

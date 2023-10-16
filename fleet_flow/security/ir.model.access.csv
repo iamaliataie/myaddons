@@ -1,4 +1,8 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_fleetflow_van,fleetflow.van,model_fleetflow_van,,1,1,1,1
 access_transfer,transfer,model_transfer,,1,1,1,1
+access_van_operation_unload,van.operation.unload,model_van_operation_unload,,1,1,1,1
+access_van_operation_load,van.operation.load,model_van_operation_load,,1,1,1,1
+access_van_operation_unload_product,van.operation.unload.product,model_van_operation_unload_product,,1,1,1,1
+access_van_operation_load_product,van.operation.load.product,model_van_operation_load_product,,1,1,1,1
 access_product_quantity_transient,product.quantity.transient,model_product_quantity_transient,,1,1,1,1

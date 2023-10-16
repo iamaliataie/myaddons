@@ -61,5 +61,5 @@ class Transfer(models.TransientModel):
                 "res_id": stock_picking.id,
                 "type": "ir.actions.act_window",
                 "view_mode": "form",
-                "context": {"van_id": self.env.context["van_id"]},
+                "context": {"van_id": self.env.context["van_id"], "state": "unload"},
             }
