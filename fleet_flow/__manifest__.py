@@ -29,6 +29,7 @@
         "wizards/transfer_view.xml",
         "wizards/van_operation_view.xml",
         "views/pos_config_view.xml",
+        "views/fleetflow_van_transfer.xml",
         # "static/src/xml/fleet_flow_van.xml",
     ],
     # only loaded in demonstration mode

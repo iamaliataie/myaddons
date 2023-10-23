@@ -6,6 +6,7 @@ class ProductQuantity(models.TransientModel):
     _name = "product.quantity.transient"
 
     product_id = fields.Many2one("product.product", readonly=True)
+    image = fields.Image(related="product_id.image_128")
     quantity = fields.Integer(readonly=True)
     quantity_transfer = fields.Integer()
     transfer_id = fields.Many2one("transfer")
@@ -15,6 +16,7 @@ class ProductQuantity(models.TransientModel):
         for rec in self:
             if rec.quantity < rec.quantity_transfer:
                 raise ValidationError("Can't transfer more than existing quantity")
+
 
 
 class Transfer(models.TransientModel):
@@ -61,5 +63,5 @@ class Transfer(models.TransientModel):
                 "res_id": stock_picking.id,
                 "type": "ir.actions.act_window",
                 "view_mode": "form",
-                "context": {"van_id": self.env.context["van_id"], "state": "unload"},
+                "context": {"van_id": self.env.context["van_id"], "state": "unload", "transfer": rec},
             }

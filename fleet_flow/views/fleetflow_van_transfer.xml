@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="fleetflow_van_transfer_form" model="ir.ui.view">
+        <field name="name">fleetflow.van.transfer.form</field>
+        <field name="model">van.transfer</field>
+        <field name="arch" type="xml">
+            <form string="Transfers">
+                <sheet>
+                    <group >
+                        <group>
+                            <field name="type" />
+                            <field name="create_date" string="Transfer Date" />
+                        </group>
+                        <group>
+                            <field name="source_location_id" />
+                            <field name="dest_location_id" />
+                        </group>
+                    </group>
+                    <field name="product_ids">
+                        <tree create="0" editable="0">
+                            <field name="product_id" />
+                            <field name="quantity" />
+                            <field name="image" widget="image" class="oe_avatar" string="Image" />
+                        </tree>
+                    </field>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="fleetflow_van_transfer_tree" model="ir.ui.view">
+        <field name="name">fleetflow.van.transfer.tree</field>
+        <field name="model">van.transfer</field>
+        <field name="arch" type="xml">
+            <tree string="Transfers">
+                <field name="type" decoration-success="type == 'in'" decoration-danger="type == 'out'" class="fw-bolder" />
+                <field name="source_location_id" />
+                <field name="dest_location_id" />
+                <field name="create_date" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="fleetflow_van_transfer_search" model="ir.ui.view">
+        <field name="name">van.transfer.view.search</field>
+        <field name="model">van.transfer</field>
+        <field name="arch" type="xml">
+            <search string="Transfers">
+                <field name="source_location_id" string="Source"/>
+                <field name="dest_location_id" string="Destination"/>
+                <filter string="out" name="type" domain="[('type', '=', 'out')]"/>
+                <filter string="in" name="type" domain="[('type', '=', 'in')]"/>
+
+                <filter string="Group By van" name="van_id" context="{'group_by': 'van_id'}"/>
+
+            </search>
+        </field>
+    </record>
+
+
+</odoo>

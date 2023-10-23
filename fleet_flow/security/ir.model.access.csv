@@ -6,3 +6,5 @@ access_van_operation_load,van.operation.load,model_van_operation_load,,1,1,1,1
 access_van_operation_unload_product,van.operation.unload.product,model_van_operation_unload_product,,1,1,1,1
 access_van_operation_load_product,van.operation.load.product,model_van_operation_load_product,,1,1,1,1
 access_product_quantity_transient,product.quantity.transient,model_product_quantity_transient,,1,1,1,1
+access_van_transfer,van.transfer,model_van_transfer,,1,1,1,1
+access_van_product_quantity,van.product.quantity,model_van_product_quantity,,1,1,1,1

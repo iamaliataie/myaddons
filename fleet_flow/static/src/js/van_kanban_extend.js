@@ -32,6 +32,17 @@ export class VanKanbanController extends KanbanController {
       res_id: false,
     });
   }
+  loadTransfers() {
+    this.actionService.doAction({
+      type: 'ir.actions.act_window',
+      res_model: 'van.transfer',
+      name: 'Transfers',
+      view_mode: 'tree',
+      view_type: 'tree',
+      views: [[false, 'tree']],
+      res_id: false,
+    });
+  }
 }
 registry.category('views').add('button_in_kanban', {
   ...kanbanView,

@@ -28,6 +28,7 @@ class FleetFlowVan(models.Model):
     operation_type_id = fields.Many2one("stock.picking.type")
     return_operation_type_id = fields.Many2one("stock.picking.type")
     model_year = fields.Char()
+    transfer_id = fields.One2many("van.transfer", "van_id")
     transmission = fields.Selection(
         [
             ("manual", "Manual"),

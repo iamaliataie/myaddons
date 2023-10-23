@@ -8,6 +8,9 @@
            <button type="button" class="btn btn-primary" style="margin-left: 10px;"  t-on-click="unloadProducts">
                Unload Products
            </button>
+           <button type="button" class="btn btn-primary" style="margin-left: 10px;"  t-on-click="loadTransfers">
+               Transfers
+           </button>
        </xpath>
    </t>
 </templates>

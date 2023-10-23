@@ -6,4 +6,5 @@ from . import (
     pos_config,
     pos_session,
     pos_order,
+    transfer,
 )

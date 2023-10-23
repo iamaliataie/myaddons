@@ -113,6 +113,16 @@
                 </tree>
               </field>
             </page>
+            <page name="transfer" string="Transfers">
+              <field name="transfer_id" >
+                <tree create="0" edit="0">
+                  <field name="type" decoration-success="type == 'in'" decoration-danger="type == 'out'" class="fw-bolder" />
+                  <field name="source_location_id"/>
+                  <field name="dest_location_id" />
+                  <field name="create_date" string="Transfer Date"/>
+                </tree>
+              </field>
+            </page>
           </notebook>
         </sheet>
       </form>
