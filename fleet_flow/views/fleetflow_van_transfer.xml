@@ -51,9 +51,7 @@
                 <field name="dest_location_id" string="Destination"/>
                 <filter string="out" name="type" domain="[('type', '=', 'out')]"/>
                 <filter string="in" name="type" domain="[('type', '=', 'in')]"/>
-
                 <filter string="Group By van" name="van_id" context="{'group_by': 'van_id'}"/>
-
             </search>
         </field>
     </record>
